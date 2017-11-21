@@ -1,9 +1,9 @@
-# Files
-*.log
-!*.gitkeep
-
 # Folders
 logs/
 data/
 app/
+
+# Files
+*.log
+!*.gitkeep
 
