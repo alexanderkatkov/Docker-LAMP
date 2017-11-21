@@ -2,6 +2,9 @@
 data/***/*.*
 logs/***/*.*
 app/***/*.*
+data/*
+logs/*
+app/*
 
 # Files
 *.log
