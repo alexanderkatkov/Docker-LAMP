@@ -1,0 +1,42 @@
+version: "2"
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "testwp"
+    volumes:
+      - /D_DRIVE/Projects_Internal/Docker-LAMP/data/mysql/:/var/lib/mysql/
+
+  server:
+    build:
+      context: .
+      dockerfile: ./build/php-apache.Dockerfile
+    image: alexk/apachephp:1.00
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /D_DRIVE/Projects_Internal/Docker-LAMP/app/:/var/www/html/
+      - /D_DRIVE/Projects_Internal/Docker-LAMP/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - /D_DRIVE/Projects_Internal/Docker-LAMP/config/custom-php.ini:/etc/php/7.1/apache2/conf.d/custom-php.ini
+      - /D_DRIVE/Projects_Internal/Docker-LAMP/logs/:/var/log/apache2/
+    links:
+      - db
+      - mail
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports: 
+      - "8080:80"
+    links:
+      - db
+
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
