@@ -1,10 +1,6 @@
 # Files
 *.log
-!.gitkeep
-/**/.gitkeep
-!logs/.gitkeep
-!data/.gitkeep
-!app/.gitkeep
+!*.gitkeep
 
 # Folders
 logs/
