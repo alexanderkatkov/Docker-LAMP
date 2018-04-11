@@ -40,27 +40,28 @@ RUN service apache2 restart
 # Provision PHP
 RUN LANG=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN apt-get update
-RUN apt-get -y install php-cli \ 
-php-common \
-php-mysql \
-php-pgsql \
-php-sqlite3 \
-php-gd php-apcu \
-php-mcrypt \
-php-gmp \
-php-curl \
-php-imap \
-php-memcached \
-php-imagick \
-php-intl \
-php-xdebug \
-php-json \
-php-mbstring \
-php-zip \
-php-xml \
+RUN apt-get -y install php7.1-cli \ 
+php7.1-common \
+php7.1-mysql \
+php7.1-pgsql \
+php7.1-sqlite3 \
+php7.1-gd \
+php7.1-apcu \
+php7.1-mcrypt \
+php7.1-gmp \
+php7.1-curl \
+php7.1-imap \
+php7.1-memcached \
+php7.1-imagick \
+php7.1-intl \
+php7.1-xdebug \
+php7.1-json \
+php7.1-mbstring \
+php7.1-zip \
+php7.1-xml \
 php-pear
 
-RUN apt-get -y install libapache2-mod-php
+RUN apt-get -y install libapache2-mod-php7.1
 RUN service apache2 restart
 
 # Install mesendmail & it's depencies for MailHog integration
