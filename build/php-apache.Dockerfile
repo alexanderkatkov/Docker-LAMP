@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:16.04
 
 LABEL maintainer="alexander.katkov@outlook.com"
 LABEL maintainer="Alex Katkov"
