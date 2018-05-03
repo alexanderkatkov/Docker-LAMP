@@ -33,7 +33,9 @@ PHP & Host setting can be set in `/config` folder
 	"request": "launch",
 	"port": 9000,
 	"localSourceRoot": "${workspaceRoot}/app/",
-	"serverSourceRoot": "/var/www/"
+	"pathMappings": {
+		"/var/www/": "${workspaceRoot}/app/",
+	}
 }
 ```
 
