@@ -1,10 +1,11 @@
 # Folders
-data/***/*.*
-logs/***/*.*
+.vscode/*
+app/*
 app/***/*.*
 data/*
+data/***/*.*
 logs/*
-app/*
+logs/***/*.*
 
 # Files
 *.log

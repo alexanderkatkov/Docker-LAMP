@@ -1,41 +1,46 @@
 version: "2"
 services:
   db:
-    image: mysql:latest
+    image: mysql:5.7
     restart: always
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: "testwp"
-    volumes:
-      - /D_DRIVE/Projects_Internal/Docker-LAMP/data/mysql/:/var/lib/mysql/
+      MYSQL_DATABASE: "thenewdb"
+      MYSQL_USER: "dbuser"
+      MYSQL_PASSWORD: "dbpass"
+    # volumes:
+      # - /D_DRIVE/Projects/test_docker/data/mysql/data:/var/lib/mysql/
 
   server:
     build:
       context: .
       dockerfile: ./build/php-apache.Dockerfile
     image: alexk/apachephp:1.00
+    restart: always
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - /D_DRIVE/Projects_Internal/Docker-LAMP/app/:/var/www/html/
-      - /D_DRIVE/Projects_Internal/Docker-LAMP/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
-      - /D_DRIVE/Projects_Internal/Docker-LAMP/config/custom-php.ini:/etc/php/7.1/apache2/conf.d/custom-php.ini
-      - /D_DRIVE/Projects_Internal/Docker-LAMP/logs/:/var/log/apache2/
+      - /D_DRIVE/Projects/test_docker/app/:/var/www/html/
+      - /D_DRIVE/Projects/test_docker/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - /D_DRIVE/Projects/test_docker/config/custom-php.ini:/etc/php/7.1/apache2/conf.d/custom-php.ini
+      - /D_DRIVE/Projects/test_docker/logs/:/var/log/apache2/
     links:
       - db
       - mail
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    restart: always
     ports: 
       - "8080:80"
     links:
       - db
 
   mail:
+    restart: always
     image: mailhog/mailhog
     ports:
       - "1025:1025"
