@@ -11,7 +11,7 @@ services:
       MYSQL_USER: "dbuser"
       MYSQL_PASSWORD: "dbpass"
     volumes:
-      - "/F_DRIVE/Internal Projects/Docker-LAMP/config/custom-mysql.cnf:/etc/mysql/conf.d/config-file.cnf"
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/config/custom-mysql.cnf:/etc/mysql/conf.d/custom-mysql.cnf"
 
   server:
     build:
