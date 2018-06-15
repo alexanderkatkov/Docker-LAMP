@@ -1,17 +1,18 @@
 version: "2"
 services:
   db:
-    image: mysql:5.7
+    image: mariadb
     restart: always
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "rootpw"
       MYSQL_DATABASE: "thenewdb"
       MYSQL_USER: "dbuser"
       MYSQL_PASSWORD: "dbpass"
-    # volumes:
-      # - /D_DRIVE/Projects/test_docker/data/mysql/data:/var/lib/mysql/
+    volumes:
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/config/mysql.conf.d/custom-mysql.cnf:/etc/mysql/conf.d/custom-mysql.cnf"
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/data/mysql:/var/lib/mysql"
 
   server:
     build:
@@ -23,10 +24,10 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /D_DRIVE/Projects/test_docker/app/:/var/www/html/
-      - /D_DRIVE/Projects/test_docker/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
-      - /D_DRIVE/Projects/test_docker/config/custom-php.ini:/etc/php/7.1/apache2/conf.d/custom-php.ini
-      - /D_DRIVE/Projects/test_docker/logs/:/var/log/apache2/
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/app:/var/www/html"
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/config/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/config/custom-php.ini:/etc/php/7.1/apache2/conf.d/custom-php.ini"
+      - "/F_DRIVE/Internal Projects/Docker-LAMP/logs:/var/log/apache2"
     links:
       - db
       - mail
