@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: "dbpass"
     volumes:
       - "/F_DRIVE/Internal Projects/Docker-LAMP/config/mysql.conf.d/custom-mysql.cnf:/etc/mysql/conf.d/custom-mysql.cnf"
-      - "/F_DRIVE/Internal Projects/Docker-LAMP/data/mysql:/var/lib/mysql"
+      # - "/F_DRIVE/Internal Projects/Docker-LAMP/data/mysql:/var/lib/mysql"
 
   server:
     build:
